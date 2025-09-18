@@ -1,0 +1,41 @@
+<div class="playlists">
+  <div class="controls" style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
+    <input
+      type="text"
+      [ngModel]="search()"
+      (ngModelChange)="onSearchChange($event)"
+      placeholder="Поиск плейлистов..."
+      style="flex: 1;"
+    />
+
+    <button type="button" (click)="prevPage()" [disabled]="pageNumber() <= 1">Назад</button>
+    <span>Стр. {{ pageNumber() }} из {{ totalPages() }}</span>
+    <button type="button" (click)="nextPage()" [disabled]="pageNumber() >= totalPages()">Вперёд</button>
+
+    <button type="button" (click)="reload()">Обновить</button>
+  </div>
+
+<!--  @if (loading()) {-->
+<!--    <div>Загрузка...</div>-->
+<!--  } @else {-->
+<!--    @if (error()) {-->
+<!--      <div style="color: red;">Ошибка: {{ error() }}</div>-->
+<!--    }-->
+
+    @if (playlists$ | async; as data) {
+      @if ((data?.data?.length ?? 0) === 0) {
+        <div>Плейлисты не найдены.</div>
+      } @else {
+        <ul style="display: grid; gap: 8px; padding-left: 16px;">
+          @for (p of data.data; track p.id) {
+            <li>
+              <div style="display: flex; flex-direction: column;">
+                <strong>{{ p?.attributes?.description || 'Без названия' }}</strong>
+                <small>ID: {{ p?.id }}</small>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    }
+  </div>

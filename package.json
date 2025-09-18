@@ -2,7 +2,10 @@
   "name": "@musik-fun/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx serve musikFun -o",
+    "build": "nx build musikFun"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~20.2.0",
