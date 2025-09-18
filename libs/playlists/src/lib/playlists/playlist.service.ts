@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class PlaylistService {
   http = inject(HttpClient);
-  private apiBaseUrl = 'https://musicfun.it-incubator.app/api/1.0';
+  private apiBaseUrl = '';
 
   fetchPlaylists(
     args: FetchPlaylistsArgs = {} as FetchPlaylistsArgs

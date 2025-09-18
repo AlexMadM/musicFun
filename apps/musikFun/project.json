@@ -18,7 +18,7 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/musikFun/public"
+            "input": "public"
           }
         ],
         "styles": ["apps/musikFun/src/styles.scss"]
