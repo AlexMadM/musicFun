@@ -13,7 +13,7 @@ export class SidebarComponent {
     {
       label: 'Home',
       icon: 'home',
-      link: 'profile/me',
+      link: '/',
     },
     {
       label: 'Your Library',

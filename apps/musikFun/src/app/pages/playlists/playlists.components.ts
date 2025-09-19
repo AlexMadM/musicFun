@@ -24,10 +24,11 @@ import {
 } from '@musik-fun/playlists';
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
+import { PlaylistCardComponent } from '../../components/playlist-card/playlist-card.component';
 
 @Component({
-  selector: 'app-playlists.components',
-  imports: [FormsModule, AsyncPipe],
+  selector: 'app-playlists',
+  imports: [FormsModule, AsyncPipe, PlaylistCardComponent],
   templateUrl: './playlists.components.html',
   styleUrl: './playlists.components.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

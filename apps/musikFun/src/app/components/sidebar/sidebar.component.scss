@@ -7,17 +7,22 @@
 }
 .main-menu-list {
   display: grid;
-  grid-gap: 28px;
+  grid-gap: 20px;
   list-style: none;
+  margin-top: 70px;
+
 }
 
 .menu-item {
-  padding: 16px 12px;
+  font-family: var(--font-family);
+margin-left: 20px;
+
   cursor: pointer;
   border: none;
   background: none;
   color: var(--light-color);
   display: grid;
+
   grid-template-columns: 32px 1fr max-content;
   align-items: center;
   grid-gap: 18px;
@@ -28,15 +33,17 @@
   text-align: left;
   border-radius: 2px;
   text-decoration: none;
+  opacity: 0.7;
 
   &.active,
   &:hover,
   &:focus-visible {
-    background: var(--dark-hover-color);
-    color: var(--primary-color);
+
+    color: var(--light-color);
+    opacity: 1;
 
     .menu-item svg {
-      color: var(--primary-color);
+      color: var(--light-color);
     }
   }
 }
@@ -45,3 +52,11 @@
   width: 32px;
   height: 32px;
 }
+.sidebar-separator {
+  width: 250px;
+  height: 0;
+  border-top: 1px solid #282828;
+
+margin-top: 32px;
+}
+

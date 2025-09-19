@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'fonts';
+@import 'margins';
 :root {
+  --font-family: "Lato", sans-serif;
+  --second-family: "Avenir Next", sans-serif;
+  --third-family: "Roboto", sans-serif;
   --dark-color: #000000;
   --dark-active-color: #161616;
   --light-color: #ffffff;
@@ -25,6 +30,7 @@ body {
 
   background:  linear-gradient(180deg, #3333a3 0%, #121212 100%);
   color: var(--light-color);
+  font-family: var(--font-family), -apple-system, system-ui, sans-serif;
   //background-image: url(/assets/imgs/background.jpg);
   //background-size: cover;
   //background-repeat: no-repeat;

@@ -1,7 +1,19 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  background: var(--dark-color);
+  align-items: center;
+  justify-content:end;
+}
 .btn{
-  width:100px;
+  width:235px;
   height: 50px;
-  border-radius: 10px;
-  background-color: black;
+  border-radius: 45px;
+  padding: 16px 40px;
+  background-color: #ff38b6;
   color: white;
+  margin-right: 32px;
+  border: none;
+
 }

@@ -11,6 +11,10 @@
           <span>{{ menuItem.label }}</span>
         </a>
       </li>
+      @if (menuItem.label === 'Your Library' || menuItem.label === 'Upload Track') {
+        <li class="sidebar-separator" role="separator" aria-hidden="true"></li>
+      }
+
     }
   </ul>
 </nav>
