@@ -1,0 +1,53 @@
+<article class="card">
+  <div class="cover">
+    <img
+      [ngSrc]="coverUrl()"
+      [alt]="title()"
+      width="320"
+      height="320"
+      loading="lazy"
+    />
+  </div>
+
+  <div class="content">
+    <h3 class="title">{{ title() }}</h3>
+
+    <div class="subtitle">
+      Made for
+      <span class="user">{{ playlist?.attributes?.user?.name || 'Unknown' }}</span>
+    </div>
+
+    <div class="meta">
+      <span>Created {{ playlist?.attributes?.addedAt | date: 'mediumDate' }}</span>
+      <span class="dot">•</span>
+      <span>{{ playlist?.attributes?.tags?.length || 0 }} tags</span>
+    </div>
+
+    <div class="reactions">
+      <button
+        type="button"
+        class="btn reaction like"
+        [class.active]="playlist?.attributes?.currentUserReaction === 1"
+        aria-label="Like"
+        title="Like"
+      >
+        ❤
+      </button>
+
+      <button
+        type="button"
+        class="btn reaction dislike"
+        [class.active]="playlist?.attributes?.currentUserReaction === -1"
+        aria-label="Dislike"
+        title="Dislike"
+      >
+        💔
+      </button>
+
+      <span class="counts">
+            {{ playlist?.attributes?.likesCount || 0 }}
+          </span>
+    </div>
+  </div>
+</article>
+
