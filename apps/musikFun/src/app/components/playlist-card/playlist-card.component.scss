@@ -20,7 +20,14 @@
   object-fit: cover;
   display: block;
 }
-.content { display: grid; gap: 6px; }
+.content {
+
+  display: grid;
+  gap: 6px;
+  padding: 8px;
+  width: 264px;
+  height: 285px;
+}
 .title {
   margin: 0;
   font-size: 18px;
