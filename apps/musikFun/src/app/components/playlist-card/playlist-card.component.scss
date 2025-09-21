@@ -7,6 +7,12 @@
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+
+  /* было width: 264px; теперь ширина задаётся колонкой сетки (264px) */
+  width: 100%;
+  max-width: 100%;
+  height: 285px;
+  min-width: 0;
 }
 .cover {
   border-radius: 8px;
@@ -24,9 +30,8 @@
 
   display: grid;
   gap: 6px;
-  padding: 8px;
-  width: 264px;
-  height: 285px;
+
+
 }
 .title {
   margin: 0;

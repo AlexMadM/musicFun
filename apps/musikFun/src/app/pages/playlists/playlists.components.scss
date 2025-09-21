@@ -1,0 +1,19 @@
+.grid {
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+
+
+  grid-template-columns: repeat(auto-fit, 264px);
+  justify-content: center;
+
+
+  max-width: calc(5 * 264px + 4 * 16px);
+}
+
+.item {
+  display: block;
+  min-width: 0; /* защита от переполнения */
+}

@@ -2,8 +2,12 @@
   display: grid;
   grid-template-columns: 300px 1fr;
   height: 100dvh;
+  width: 100%;
 }
 
 .workspace {
-margin:32px 32px;
+  margin: 32px 32px;
+
+  max-width: calc(100vw - 300px - 64px);
+  box-sizing: border-box;
 }

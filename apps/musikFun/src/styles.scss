@@ -25,13 +25,63 @@
   padding: 0;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0; // убираем дефолтный margin у body
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden; // предотвращаем горизонтальный скролл, если что-то чуть шире экрана
+}
+
+/* Корневой контейнер приложения занимает полный экран */
+app-root {
+  min-height: 100dvh; // корректнее, чем 100vh на мобильных (учитывает адресную строку)
+  display: flex;
+  flex-direction: column;
+}
+
+/* Если есть основной контент-область, она растягивается и скроллится внутри */
+main {
+  flex: 1 1 auto;
+  min-height: 0; // важно для корректного внутреннего скролла
+  overflow: auto;
+}
+
+/* Универсальные защиты от "вылезания" по ширине */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Часто источники лишних отступов — списки */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   height: 100dvh;
+  background: fixed no-repeat linear-gradient(180deg, #3333a3 0%, #121212 100%);
+  background-size: 100% 100%;
 
-  background:  linear-gradient(180deg, #3333a3 0%, #121212 100%);
+  //background:  linear-gradient(180deg, #3333a3 0%, #121212 100%);
   color: var(--light-color);
   font-family: var(--font-family), -apple-system, system-ui, sans-serif;
   //background-image: url(/assets/imgs/background.jpg);
   //background-size: cover;
-  //background-repeat: no-repeat;
+ // background-repeat: no-repeat;
 }
