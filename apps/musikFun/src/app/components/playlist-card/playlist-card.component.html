@@ -3,8 +3,9 @@
     <img
       [ngSrc]="coverUrl()"
       [alt]="title()"
-      width="248"
-      height="153"
+      [width]="coverSize().width"
+      [height]="coverSize().height"
+
       loading="lazy"
 
     />
@@ -32,7 +33,7 @@
         aria-label="Like"
         title="Like"
       >
-        ❤
+        <svg [icon]="menuItems[0].icon"></svg>
       </button>
 
       <button
@@ -42,7 +43,7 @@
         aria-label="Dislike"
         title="Dislike"
       >
-        💔
+        <svg [icon]="menuItems[1].icon"></svg>
       </button>
 
       <span class="counts">
