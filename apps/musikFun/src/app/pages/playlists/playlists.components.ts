@@ -71,7 +71,7 @@ export class PlaylistsComponents {
       return this.playlistService.fetchPlaylists(args).pipe(
         map((res) => ({
           ...res,
-          items: Array.isArray(res?.data) ? res.data.slice(0, 10) : [],
+          data: Array.isArray(res?.data) ? res.data.slice(0, 10) : [],
         })),
 
         catchError((err) => {

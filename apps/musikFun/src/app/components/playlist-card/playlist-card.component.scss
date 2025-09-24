@@ -5,22 +5,28 @@
   background: #0f1220;
   color: #eef0ff;
   border-radius: 12px;
-  padding: 12px;
+  padding: 8px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 
   /* было width: 264px; теперь ширина задаётся колонкой сетки (264px) */
   width: 100%;
   max-width: 100%;
-  height: 285px;
+  height: auto;
   min-width: 0;
 }
 .cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 8px;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
   background: #22263a;
   width:248px;
-  height:153px;
+  height: 153px;
+  justify-self: center;
+
+
 }
 .cover img {
   width: 100%;
@@ -62,18 +68,33 @@
 .meta .dot { opacity: .6; }
 .reactions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   margin-top: 6px;
+
 }
 .btn {
   border: none;
   background: transparent;
-  cursor: default; /* пока без действий */
+  cursor: pointer; /* пока без действий */
   font-size: 18px;
   line-height: 1;
   padding: 0;
   opacity: .8;
+  width: 28px;
+  height: 28px;
 }
+.reaction-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .reaction.active { opacity: 1; filter: drop-shadow(0 0 4px rgba(255,0,90,.5)); }
-.counts { font-size: 12px; color: #cdd2ff; }
+.counts {
+  font-size: 12px;
+  color: #cdd2ff;
+  margin-top: 4px; /* отступ под иконкой */
+  text-align: center;
+}
+

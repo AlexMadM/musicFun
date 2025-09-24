@@ -26,15 +26,21 @@
     </div>
 
     <div class="reactions">
-      <button
-        type="button"
-        class="btn reaction like"
-        [class.active]="playlist?.attributes?.currentUserReaction === 1"
-        aria-label="Like"
-        title="Like"
-      >
-        <svg [icon]="menuItems[0].icon"></svg>
-      </button>
+      <div class="reaction-group">
+        <button
+          type="button"
+          class="btn reaction like"
+          [class.active]="playlist?.attributes?.currentUserReaction === 1"
+          aria-label="Like"
+          title="Like"
+        >
+          <svg [icon]="menuItems[0].icon"></svg>
+        </button>
+        <span class="counts">
+          {{ playlist?.attributes?.likesCount || 0 }}
+        </span>
+      </div>
+
 
       <button
         type="button"
@@ -46,9 +52,7 @@
         <svg [icon]="menuItems[1].icon"></svg>
       </button>
 
-      <span class="counts">
-            {{ playlist?.attributes?.likesCount || 0 }}
-          </span>
+
     </div>
   </div>
 </article>

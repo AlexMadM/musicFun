@@ -21,7 +21,7 @@ export class PlaylistCardComponent implements OnInit {
   readonly placeholderUrl = 'assets/no-cover-placeholder.avif';
   menuItems = [
     {
-      icon: 'heart-fill',
+      icon: 'heart_fill',
     },
     {
       icon: 'heart-break',
