@@ -1,0 +1,25 @@
+
+
+ <div class="card">
+  <div class="cover"><img
+    [src]="tracklist()?.attributes?.attachments?.[0]?.url || '/assets/images/placeholder-cover.jpg'"
+    alt="√Обложка плейлиста"
+    loading="lazy"
+
+  /></div>
+
+   <h3>{{tracklist()?.attributes?.title}}</h3>
+  <p>{{tracklist()?.attributes?.currentUserReaction}}</p>
+  <div class="likes">
+    <div class="likes-count">
+        <button type="button" class="btn reaction like"> <svg [icon]="menuItems[0].icon"></svg></button>
+         <span class="counts">
+          {{ tracklist()?.attributes?.likesCount}}
+          </span>
+
+
+    </div>
+        <button type="button" class="btn reaction dislike"> <svg [icon]="menuItems[1].icon"></svg></button>
+  </div>
+</div>
+

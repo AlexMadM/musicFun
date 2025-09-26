@@ -31,7 +31,7 @@ export class SidebarComponent {
       link: 'uploadTrack',
     },
     {
-      label: 'All Tracks',
+      label: 'All TracksService',
       icon: 'tracks',
       link: 'allTracks',
     },

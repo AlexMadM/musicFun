@@ -1,0 +1,23 @@
+.playlists {
+  /* контейнер секции */
+}
+
+.playlists .grid {
+  /* единая сетка для карточек (и плейлистов, и треков) */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  max-width: calc(10 * 128px + 9 * 8px);  //1352
+  gap: 8px;
+
+  margin: 0 ;
+  padding: 0;
+  list-style: none;
+  place-content: center;
+
+  align-items: start; /* карточки стоят «в один уровень» по верхнему краю */
+}
+
+.playlists .grid > .item {
+  /* элемент сетки */
+  min-width: 0; /* чтобы работали ellipsis в заголовках */
+}

@@ -17,7 +17,9 @@
     "paths": {
       "@musik-fun/auth": ["libs/auth/src/index.ts"],
       "@musik-fun/common-ui": ["libs/common-ui/src/index.ts"],
-      "@musik-fun/playlists": ["libs/playlists/src/index.ts"]
+      "@musik-fun/playlists": ["libs/playlists/src/index.ts"],
+      "@musik-fun/tracks": ["libs/tracks/tracks/src/index.ts"],
+      "@musik-fun/tracks-playlists": ["libs/tracks-playlists/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

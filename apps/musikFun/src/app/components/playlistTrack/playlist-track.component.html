@@ -1,0 +1,15 @@
+<div class="playlists">
+  @if (tracklists$ | async; as data) {
+    @if ((data?.data?.length ?? 0) === 0) {
+      <div>Плейлисты не найдены.</div>
+    } @else {
+      <ul class="grid">
+        @for (p of data.data; track p.id) {
+          <li class="item">
+            <app-tracklist-card [tracklist]="p" />
+          </li>
+        }
+      </ul>
+    }
+  }
+</div>

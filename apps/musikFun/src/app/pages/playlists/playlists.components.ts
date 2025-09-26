@@ -25,10 +25,16 @@ import {
 import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { PlaylistCardComponent } from '../../components/playlist-card/playlist-card.component';
+import { PlaylistTrackComponent } from '../../components/playlistTrack/playlist-track.component';
 
 @Component({
   selector: 'app-playlists',
-  imports: [FormsModule, AsyncPipe, PlaylistCardComponent],
+  imports: [
+    FormsModule,
+    AsyncPipe,
+    PlaylistCardComponent,
+    PlaylistTrackComponent,
+  ],
   templateUrl: './playlists.components.html',
   styleUrl: './playlists.components.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
