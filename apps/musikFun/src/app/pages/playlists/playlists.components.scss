@@ -4,13 +4,15 @@
   padding: 0;
   margin: 0 auto;
   list-style: none;
+  //width: min(100%, calc(5 * 264px + 4 * 8px));
 
 
-  grid-template-columns: repeat(auto-fit, 264px);
+  grid-template-columns: repeat(5, 264px);
   justify-content: center;
+  width: 100%;
 
 
-  max-width: calc(5 * 264px + 4 * 8px); //1320 =32=1352
+ max-width: calc(5 * 264px + 4 * 8px); //1320 =32=1352
 }
 
 .item {
@@ -19,7 +21,6 @@
 }
 
 .track {
-margin-left: 40px;
   align-items: center;      /* вертикально */
   justify-content: center;  /* горизонтально (по желанию) */
       /* пример: на всю высоту экрана */

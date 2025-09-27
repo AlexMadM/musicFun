@@ -1,11 +1,15 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs';
+import { firstValueFrom, tap } from 'rxjs';
 
 export interface AuthTokensResponse {
   accessToken: string;
   refreshToken: string;
+}
+export interface MeResponse {
+  userId: string;
+  login: string;
 }
 
 export interface OAuthLoginArgs {
@@ -22,6 +26,7 @@ export class Auth {
   private http = inject(HttpClient);
 
   apiBaseUrl = 'https://musicfun.it-incubator.app/api/1.0';
+  user = signal<MeResponse | null>(null);
 
   accessToken: string | null = null;
   refreshToken: string | null = null;
@@ -31,6 +36,24 @@ export class Auth {
       .post<AuthTokensResponse>(`${this.apiBaseUrl}/auth/login`, payload)
       .pipe(tap((val) => this.saveTokens(val)));
   }
+  me() {
+    return this.http.get<MeResponse>(`${this.apiBaseUrl}/auth/me`);
+  }
+
+  async loadMe(): Promise<void> {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+      this.user.set(null);
+      return;
+    }
+    try {
+      const profile = await firstValueFrom(this.me());
+      this.user.set(profile);
+    } catch {
+      this.user.set(null);
+    }
+  }
+
 
   saveTokens(res: AuthTokensResponse) {
     this.accessToken = res.accessToken;

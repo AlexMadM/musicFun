@@ -1,2 +1,10 @@
+@if (user(); as u) {
+  <button class="btn btn--user" type="button" title="{{ u.login }}">
+    <img class="btn-avatar" src="/assets/avatar.svg" alt="avatar" />
+    <span class="btn-text">{{ u.login }}</span>
+  </button>
+} @else {
+  <app-login></app-login>
+}
 
-<app-login></app-login>
+
