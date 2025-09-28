@@ -4,6 +4,7 @@ import {
   computed,
   effect,
   inject,
+  OnInit,
   signal,
 } from '@angular/core';
 
@@ -26,6 +27,9 @@ import { FormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { PlaylistCardComponent } from '../../components/playlist-card/playlist-card.component';
 import { PlaylistTrackComponent } from '../../components/playlistTrack/playlist-track.component';
+import { Player } from '@musik-fun/player';
+
+import { MOCK_PLAYLISTS_RESPONSE } from './mock_playlists_data';
 
 @Component({
   selector: 'app-playlists',
@@ -34,6 +38,7 @@ import { PlaylistTrackComponent } from '../../components/playlistTrack/playlist-
     AsyncPipe,
     PlaylistCardComponent,
     PlaylistTrackComponent,
+    Player,
   ],
   templateUrl: './playlists.components.html',
   styleUrl: './playlists.components.scss',
@@ -69,36 +74,37 @@ export class PlaylistsComponents {
   // состояние загрузки/ошибки/данных
   loading = signal<boolean>(false);
   error = signal<string | null>(null);
+  playlists$: Observable<PlaylistsResponse> = of(MOCK_PLAYLISTS_RESPONSE);
 
-  playlists$: Observable<PlaylistsResponse> = this.args$.pipe(
-    switchMap((args) => {
-      this.loading.set(true);
-      this.error.set(null);
-      return this.playlistService.fetchPlaylists(args).pipe(
-        map((res) => ({
-          ...res,
-          data: Array.isArray(res?.data) ? res.data.slice(0, 10) : [],
-        })),
-
-        catchError((err) => {
-          const message =
-            err?.error?.message ??
-            err?.message ??
-            'Не удалось загрузить плейлисты';
-          this.error.set(message);
-          return of({
-            items: [],
-            totalCount: 0,
-          } as unknown as PlaylistsResponse);
-        })
-      );
-    }),
-    // сбрасываем флаг загрузки после каждого результата
-    map((res) => {
-      this.loading.set(false);
-      return res;
-    })
-  );
+  // playlists$: Observable<PlaylistsResponse> = this.args$.pipe(
+  //   switchMap((args) => {
+  //     this.loading.set(true);
+  //     this.error.set(null);
+  //     return this.playlistService.fetchPlaylists(args).pipe(
+  //       map((res) => ({
+  //         ...res,
+  //         data: Array.isArray(res?.data) ? res.data.slice(0, 10) : [],
+  //       })),
+  //
+  //       catchError((err) => {
+  //         const message =
+  //           err?.error?.message ??
+  //           err?.message ??
+  //           'Не удалось загрузить плейлисты';
+  //         this.error.set(message);
+  //         return of({
+  //           items: [],
+  //           totalCount: 0,
+  //         } as unknown as PlaylistsResponse);
+  //       })
+  //     );
+  //   }),
+  //   // сбрасываем флаг загрузки после каждого результата
+  //   map((res) => {
+  //     this.loading.set(false);
+  //     return res;
+  //   })
+  // );
 
   // удобные вычисления для пагинации
   totalCount = signal<number>(0);
@@ -108,18 +114,18 @@ export class PlaylistsComponents {
   });
 
   // Следим за ответом, чтобы вытащить totalCount (если есть)
-  // Если в вашем PlaylistsResponse другое поле с общим числом — поправьте здесь
-  constructor() {
-    effect(() => {
-      // эффект подписки только для totalCount
-      // подписка через template async парсит данные, а это — локальный побочный эффект
-      const sub = this.playlists$.subscribe((res: any) => {
-        const total = typeof res?.totalCount === 'number' ? res.totalCount : 0;
-        this.totalCount.set(total);
-      });
-      return () => sub.unsubscribe();
-    });
-  }
+  // // Если в вашем PlaylistsResponse другое поле с общим числом — поправьте здесь
+  // constructor() {
+  //   effect(() => {
+  //     // эффект подписки только для totalCount
+  //     // подписка через template async парсит данные, а это — локальный побочный эффект
+  //     const sub = this.playlists$.subscribe((res: any) => {
+  //       const total = typeof res?.totalCount === 'number' ? res.totalCount : 0;
+  //       this.totalCount.set(total);
+  //     });
+  //     return () => sub.unsubscribe();
+  //   });
+  // }
 
   onSearchChange(value: string) {
     this.search.set(value);

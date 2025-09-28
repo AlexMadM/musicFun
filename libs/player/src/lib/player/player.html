@@ -1,0 +1,133 @@
+<div class="audio-player" role="region" aria-label="Аудиоплеер">
+  <!-- Индикатор ошибки -->
+  @if (error()) {
+    <div class="error-banner" role="alert" aria-live="assertive">
+      <span class="error-icon">⚠️</span>
+      <span class="error-message">{{ error()?.message }}</span>
+      <button 
+        type="button" 
+        class="error-close" 
+        (click)="clearError()"
+        aria-label="Закрыть сообщение об ошибке"
+      >
+        ✕
+      </button>
+    </div>
+  }
+
+  <div class="audio-left">
+    <div class="cover-container">
+      <img
+        class="cover"
+        [src]="track()?.cover || 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect width=%2260%22 height=%2260%22 fill=%23333/><text x=%2230%22 y=%2236%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23aaa%22>♪</text></svg>'"
+        [alt]="(track()?.title || 'Трек') + ' — обложка'"
+        loading="lazy"
+        decoding="async"
+      />
+      @if (isLoading()) {
+        <div class="loading-spinner" aria-label="Загрузка трека">
+          <div class="spinner"></div>
+        </div>
+      }
+    </div>
+    <div class="audio-info">
+      <div class="title" [attr.aria-label]="'Название: ' + (track()?.title || 'Не выбрано')">
+        {{ track()?.title || 'Ничего не играет' }}
+      </div>
+      <div class="artist" [attr.aria-label]="'Исполнитель: ' + (track()?.artist || 'Не выбран')">
+        {{ track()?.artist || 'Выберите трек' }}
+      </div>
+    </div>
+  </div>
+
+  <div class="audio-center">
+    <div class="audio-controls">
+      <button
+        type="button"
+        (click)="toggleShuffle()
+        "
+        [disabled]="!hasTrack()"
+        [class.active]="isShuffle()"
+        [attr.aria-pressed]="isShuffle()"
+        aria-label="Перемешивание"
+      >
+        <span>🔀</span>
+      </button>
+
+      <button type="button" (click)="prev()" [disabled]="!hasTrack()" aria-label="Предыдущий трек">
+        ⏮️
+      </button>
+
+      <button
+        type="button"
+        class="play-pause"
+        (click)="togglePlay()"
+        [attr.aria-pressed]="isPlaying()"
+        aria-label="Воспроизведение/пауза"
+      >
+        @if (!isPlaying()) { <span>▶️</span> } @else { <span>⏸️</span> }
+      </button>
+
+      <button type="button" (click)="next()" [disabled]="!hasTrack()" aria-label="Следующий трек">
+        ⏭️
+      </button>
+
+      <button
+        type="button"
+        (click)="toggleRepeat()"
+        [disabled]="!hasTrack()"
+        [class.active]="repeatMode() !== 'off'"
+        [attr.aria-pressed]="repeatMode() !== 'off'"
+        [attr.aria-label]="getRepeatTitle()"
+        [title]="getRepeatTitle()"
+      >
+        <span [attr.aria-hidden]="true">{{ getRepeatIcon() }}</span>
+      </button>
+    </div>
+
+    <div class="audio-progress">
+      <span>{{ formatTime(currentTime()) }}</span>
+      <input
+        type="range"
+        min="0"
+        [attr.max]="duration() || 0"
+        [value]="currentTime()"
+        step="0.1"
+        (input)="seek($event)"
+        [disabled]="!hasTrack()"
+        aria-label="Позиция трека"
+      />
+      <span>{{ formatTime(duration()) }}</span>
+    </div>
+  </div>
+
+  <div class="audio-right">
+    <div class="volume-control">
+      <span aria-hidden="true">🔊</span>
+      <input
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        [value]="volume()"
+        (input)="setVolume($event)"
+        aria-label="Громкость"
+      />
+    </div>
+    
+    <!-- Подсказки по клавиатурным сокращениям -->
+    <div class="keyboard-hints" role="tooltip" aria-label="Клавиатурные сокращения">
+      <details>
+        <summary>⌨️</summary>
+        <div class="hints-content">
+          <div><kbd>Space</kbd> - Воспроизведение/пауза</div>
+          <div><kbd>←</kbd> - Предыдущий трек</div>
+          <div><kbd>→</kbd> - Следующий трек</div>
+          <div><kbd>M</kbd> - Перемешивание</div>
+          <div><kbd>R</kbd> - Режим повтора</div>
+          <div><kbd>Esc</kbd> - Закрыть ошибку</div>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>

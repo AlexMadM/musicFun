@@ -4,25 +4,23 @@
   padding: 0;
   margin: 0 auto;
   list-style: none;
-  //width: min(100%, calc(5 * 264px + 4 * 8px));
-
-
-  grid-template-columns: repeat(5, 264px);
+  grid-template-columns: repeat(auto-fit, 264px);
   justify-content: center;
+ //max-width: ( calc(5 * 264px + 4 * 8px));
   width: 100%;
 
 
- max-width: calc(5 * 264px + 4 * 8px); //1320 =32=1352
+
 }
 
 .item {
   display: block;
-  min-width: 0; /* защита от переполнения */
+  min-width: 0;
 }
 
 .track {
-  align-items: center;      /* вертикально */
-  justify-content: center;  /* горизонтально (по желанию) */
-      /* пример: на всю высоту экрана */
+  align-items: center;
+  justify-content: center;
+
 }
 

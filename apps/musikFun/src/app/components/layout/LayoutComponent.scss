@@ -1,32 +1,10 @@
 :host {
   display: grid;
-  /* страница до 1728px и по центру */
-  width: 100%;
-  max-width: 1728px;
-  margin: 0 auto;
-
-  /* 300px сайдбар + контент:
-     максимум 1352px, но не больше доступного (100% - 300px) */
-  grid-template-columns: 300px minmax(0, min(1352px, calc(100% - 300px)));
-
-
+  grid-template-columns: 300px 1fr;
   height: 100dvh;
-  min-width: 0;
-
-
+  width: 100%;
 }
 
 .workspace {
-  //margin: 32px 32px;
-  padding: 32px;
-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-
-
-
-}
-.content {
-  /* ключ к устранению горизонтального обрезания в grid */
-
+  padding:25px 25px;
 }
